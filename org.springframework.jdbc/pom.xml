@@ -47,7 +47,7 @@
       <groupId>org.springframework</groupId>
       <artifactId>spring-context</artifactId>
       <version>${version.spring}</version>
-      <optional>true</optional>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework</groupId>
@@ -110,5 +110,27 @@
         </includes>
       </testResource>
     </testResources>
+
+	 <plugins>
+		 <plugin>
+			 <groupId>org.codehaus.mojo</groupId>
+			 <artifactId>build-helper-maven-plugin</artifactId>
+			 <version>1.7</version>
+			 <executions>
+				 <execution>
+					 <id>add-removed-for-test</id>
+					 <phase>generate-test-sources</phase>
+					 <goals>
+						 <goal>add-test-source</goal>
+					 </goals>
+					 <configuration>
+						 <sources>
+							 <source>src/removed/java</source>
+						 </sources>
+					 </configuration>
+				 </execution>
+			 </executions>
+		 </plugin>
+	 </plugins>
   </build>
 </project>

@@ -1,5 +1,5 @@
 /*
- * Copyright 2002-2011 the original author or authors.
+ * Copyright 2002-2012 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -23,43 +23,33 @@ import org.springframework.beans.factory.support.AbstractBeanDefinition;
 import org.springframework.beans.factory.support.BeanDefinitionBuilder;
 import org.springframework.beans.factory.xml.AbstractBeanDefinitionParser;
 import org.springframework.beans.factory.xml.ParserContext;
-import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseFactoryBean;
+import org.springframework.jdbc.datasource.init.DataSourceInitializer;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
-import org.springframework.util.StringUtils;
 
 /**
- * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} that parses an {@code embedded-database}
- * element and creates a {@link BeanDefinition} for {@link EmbeddedDatabaseFactoryBean}. Picks up nested
+ * {@link org.springframework.beans.factory.xml.BeanDefinitionParser} that parses an {@code initialize-database}
+ * element and creates a {@link BeanDefinition} of type {@link DataSourceInitializer}. Picks up nested
  * {@code script} elements and configures a {@link ResourceDatabasePopulator} for them.
  *
- * @author Oliver Gierke
+ * @author Dave Syer
  * @author Juergen Hoeller
  * @since 3.0
  */
-class EmbeddedDatabaseBeanDefinitionParser extends AbstractBeanDefinitionParser {
+class InitializeDatabaseBeanDefinitionParser extends AbstractBeanDefinitionParser {
 
 	@Override
 	protected AbstractBeanDefinition parseInternal(Element element, ParserContext parserContext) {
-		BeanDefinitionBuilder builder = BeanDefinitionBuilder.rootBeanDefinition(EmbeddedDatabaseFactoryBean.class);
-		setDatabaseType(element, builder);
+		BeanDefinitionBuilder builder = BeanDefinitionBuilder.genericBeanDefinition(DataSourceInitializer.class);
+		builder.addPropertyReference("dataSource", element.getAttribute("data-source"));
+		builder.addPropertyValue("enabled", element.getAttribute("enabled"));
 		DatabasePopulatorConfigUtils.setDatabasePopulator(element, builder);
-		useIdAsDatabaseNameIfGiven(element, builder);
 		builder.getRawBeanDefinition().setSource(parserContext.extractSource(element));
 		return builder.getBeanDefinition();
 	}
 
-	private void useIdAsDatabaseNameIfGiven(Element element, BeanDefinitionBuilder builder) {
-		String id = element.getAttribute(ID_ATTRIBUTE);
-		if (StringUtils.hasText(id)) {
-			builder.addPropertyValue("databaseName", id);
-		}
-	}
-
-	private void setDatabaseType(Element element, BeanDefinitionBuilder builder) {
-		String type = element.getAttribute("type");
-		if (StringUtils.hasText(type)) {
-			builder.addPropertyValue("databaseType", type);
-		}
+	@Override
+	protected boolean shouldGenerateId() {
+		return true;
 	}
 
 }
