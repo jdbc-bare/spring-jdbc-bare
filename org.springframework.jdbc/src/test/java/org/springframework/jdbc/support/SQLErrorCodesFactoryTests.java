@@ -16,6 +16,7 @@
 
 package org.springframework.jdbc.support;
 
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
@@ -85,7 +86,7 @@ public class SQLErrorCodesFactoryTests extends TestCase {
 	public void testLookupOrder() {
 		class TestSQLErrorCodesFactory extends SQLErrorCodesFactory {
 			private int lookups = 0;
-			protected Resource loadResource(String path) {
+			protected InputStream loadResource(String path) {
 				++lookups;
 				if (lookups == 1) {
 					assertEquals(SQLErrorCodesFactory.SQL_ERROR_CODE_DEFAULT_PATH, path);
@@ -111,9 +112,9 @@ public class SQLErrorCodesFactoryTests extends TestCase {
 	 */
 	public void testFindUserDefinedCodes() {
 		class TestSQLErrorCodesFactory extends SQLErrorCodesFactory {
-			protected Resource loadResource(String path) {
+			protected InputStream loadResource(String path) {
 				if (SQLErrorCodesFactory.SQL_ERROR_CODE_OVERRIDE_PATH.equals(path)) {
-					return new ClassPathResource("test-error-codes.xml", SQLErrorCodesFactoryTests.class);
+					return getClass().getResourceAsStream("test-error-codes.xml");
 				}
 				return null;
 			}
@@ -129,10 +130,10 @@ public class SQLErrorCodesFactoryTests extends TestCase {
 
 	public void testInvalidUserDefinedCodeFormat() {
 		class TestSQLErrorCodesFactory extends SQLErrorCodesFactory {
-			protected Resource loadResource(String path) {
+			protected InputStream loadResource(String path) {
 				if (SQLErrorCodesFactory.SQL_ERROR_CODE_OVERRIDE_PATH.equals(path)) {
 					// Guaranteed to be on the classpath, but most certainly NOT XML
-					return new ClassPathResource("SQLExceptionTranslator.class", SQLErrorCodesFactoryTests.class);
+					return getClass().getResourceAsStream("SQLExceptionTranslator.class");
 				}
 				return null;
 			}
@@ -149,9 +150,9 @@ public class SQLErrorCodesFactoryTests extends TestCase {
 	 */
 	public void testFindCustomCodes() {
 		class TestSQLErrorCodesFactory extends SQLErrorCodesFactory {
-			protected Resource loadResource(String path) {
+			protected InputStream loadResource(String path) {
 				if (SQLErrorCodesFactory.SQL_ERROR_CODE_OVERRIDE_PATH.equals(path)) {
-					return new ClassPathResource("custom-error-codes.xml", SQLErrorCodesFactoryTests.class);
+					return getClass().getResourceAsStream("custom-error-codes.xml");
 				}
 				return null;
 			}
@@ -276,9 +277,9 @@ public class SQLErrorCodesFactoryTests extends TestCase {
 	 */
 	public void testWildCardNameRecognized() throws Exception {
 		class WildcardSQLErrorCodesFactory extends SQLErrorCodesFactory {
-			protected Resource loadResource(String path) {
+			protected InputStream loadResource(String path) {
 				if (SQLErrorCodesFactory.SQL_ERROR_CODE_OVERRIDE_PATH.equals(path)) {
-					return new ClassPathResource("wildcard-error-codes.xml", SQLErrorCodesFactoryTests.class);
+					return getClass().getResourceAsStream("wildcard-error-codes.xml");
 				}
 				return null;
 			}

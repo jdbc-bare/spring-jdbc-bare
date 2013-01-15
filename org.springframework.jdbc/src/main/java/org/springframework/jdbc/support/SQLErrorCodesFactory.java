@@ -16,7 +16,9 @@
 
 package org.springframework.jdbc.support;
 
+import java.io.InputStream;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.WeakHashMap;
 import javax.sql.DataSource;
@@ -24,11 +26,6 @@ import javax.sql.DataSource;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.support.DefaultListableBeanFactory;
-import org.springframework.beans.factory.xml.XmlBeanDefinitionReader;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.util.Assert;
 import org.springframework.util.PatternMatchUtils;
 
@@ -97,17 +94,13 @@ public class SQLErrorCodesFactory {
 	 * @see #loadResource(String)
 	 */
 	protected SQLErrorCodesFactory() {
-		Map<String, SQLErrorCodes> errorCodes;
+		Map<String, SQLErrorCodes> errorCodes = new HashMap<String, SQLErrorCodes>();
 
 		try {
-			DefaultListableBeanFactory lbf = new DefaultListableBeanFactory();
-			lbf.setBeanClassLoader(getClass().getClassLoader());
-			XmlBeanDefinitionReader bdr = new XmlBeanDefinitionReader(lbf);
-
 			// Load default SQL error codes.
-			Resource resource = loadResource(SQL_ERROR_CODE_DEFAULT_PATH);
-			if (resource != null && resource.exists()) {
-				bdr.loadBeanDefinitions(resource);
+			InputStream resource = loadResource(SQL_ERROR_CODE_DEFAULT_PATH);
+			if (resource != null) {
+				errorCodes.putAll(SQLErrorCodesParser.fromStream(resource));
 			}
 			else {
 				logger.warn("Default sql-error-codes.xml not found (should be included in spring.jar)");
@@ -115,18 +108,17 @@ public class SQLErrorCodesFactory {
 
 			// Load custom SQL error codes, overriding defaults.
 			resource = loadResource(SQL_ERROR_CODE_OVERRIDE_PATH);
-			if (resource != null && resource.exists()) {
-				bdr.loadBeanDefinitions(resource);
+			if (resource != null) {
+				errorCodes.putAll(SQLErrorCodesParser.fromStream(resource));
 				logger.info("Found custom sql-error-codes.xml file at the root of the classpath");
 			}
 
 			// Check all beans of type SQLErrorCodes.
-			errorCodes = lbf.getBeansOfType(SQLErrorCodes.class, true, false);
 			if (logger.isInfoEnabled()) {
 				logger.info("SQLErrorCodes loaded: " + errorCodes.keySet());
 			}
 		}
-		catch (BeansException ex) {
+		catch (IllegalArgumentException ex) {
 			logger.warn("Error loading SQL error codes from config file", ex);
 			errorCodes = Collections.emptyMap();
 		}
@@ -145,8 +137,8 @@ public class SQLErrorCodesFactory {
 	 * @return the resource, or <code>null</code> if the resource wasn't found
 	 * @see #getInstance
 	 */
-	protected Resource loadResource(String path) {
-		return new ClassPathResource(path, getClass().getClassLoader());
+	protected InputStream loadResource(String path) {
+		return getClass().getClassLoader().getResourceAsStream(path);
 	}
 
 
