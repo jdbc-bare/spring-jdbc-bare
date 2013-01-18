@@ -211,6 +211,8 @@
     <excludeFromCompile>
       <directory url="file://$PROJECT_DIR$/org.springframework.jdbc/target/generated-sources/annotations" includeSubdirectories="true" />
       <directory url="file://$PROJECT_DIR$/org.springframework.jdbc/target/generated-test-sources/test-annotations" includeSubdirectories="true" />
+      <file url="file://$PROJECT_DIR$/org.springframework.core/src/main/java/org/springframework/core/env/JOptCommandLinePropertySource.java" />
+      <file url="file://$PROJECT_DIR$/org.springframework.core/src/test/java/org/springframework/util/xml/AbstractStaxContentHandlerTestCase.java" />
     </excludeFromCompile>
     <resourceExtensions>
       <entry name=".+\.(properties|xml|html|dtd|tld)" />

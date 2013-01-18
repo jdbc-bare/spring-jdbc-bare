@@ -50,14 +50,15 @@ public class SqlParameterSourceUtils {
 	 * @param beans object array of beans containing the values to be used
 	 * @return an array of SqlParameterSource
 	 */
-	public static SqlParameterSource[] createBatch(Object[] beans) {
-		BeanPropertySqlParameterSource[] batch = new BeanPropertySqlParameterSource[beans.length];
-		for (int i = 0; i < beans.length; i++) {
-			Object bean = beans[i];
-			batch[i] = new BeanPropertySqlParameterSource(bean);
-		}
-		return batch;
-	}
+// removed due to strong spring-beans dependency
+//	public static SqlParameterSource[] createBatch(Object[] beans) {
+//		BeanPropertySqlParameterSource[] batch = new BeanPropertySqlParameterSource[beans.length];
+//		for (int i = 0; i < beans.length; i++) {
+//			Object bean = beans[i];
+//			batch[i] = new BeanPropertySqlParameterSource(bean);
+//		}
+//		return batch;
+//	}
 
 	/**
 	 * Create a wrapped value if parameter has type information, plain object if not.
@@ -87,14 +88,15 @@ public class SqlParameterSourceUtils {
  */
 	public static Map extractCaseInsensitiveParameterNames(SqlParameterSource parameterSource) {
 		Map caseInsensitiveParameterNames = new HashMap();
-		if (parameterSource instanceof BeanPropertySqlParameterSource) {
-			String[] propertyNames = ((BeanPropertySqlParameterSource)parameterSource).getReadablePropertyNames();
-			for (int i = 0; i < propertyNames.length; i++) {
-				String name = propertyNames[i];
-				caseInsensitiveParameterNames.put(name.toLowerCase(), name);
-			}
-		}
-		else if (parameterSource instanceof MapSqlParameterSource) {
+//		if (parameterSource instanceof BeanPropertySqlParameterSource) {
+//			String[] propertyNames = ((BeanPropertySqlParameterSource)parameterSource).getReadablePropertyNames();
+//			for (int i = 0; i < propertyNames.length; i++) {
+//				String name = propertyNames[i];
+//				caseInsensitiveParameterNames.put(name.toLowerCase(), name);
+//			}
+//		}
+//		else
+		if (parameterSource instanceof MapSqlParameterSource) {
 			for (String name : ((MapSqlParameterSource) parameterSource).getValues().keySet()) {
 				caseInsensitiveParameterNames.put(name.toLowerCase(), name);
 			}
