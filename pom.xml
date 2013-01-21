@@ -2,16 +2,16 @@
      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
      xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.springframework</groupId>
-  <artifactId>spring-parent</artifactId>
-  <packaging>pom</packaging>
-  <name>Spring Framework - Parent</name>
+  <groupId>com.github.pdudits</groupId>
+  <artifactId>spring-jdbc-bare-parent</artifactId>
+  <name>Spring JDBC Bare - Parent</name>
   <version>3.1.4.BUILD-SNAPSHOT</version>
+  <packaging>pom</packaging>
   <description>Spring Framework Parent</description>
   <scm>
-    <url>https://fisheye.springframework.org/browse/spring-framework</url>
-    <connection>scm:svn:https://src.springframework.org/svn/spring-framework/trunk</connection>
-    <developerConnection>scm:svn:https://src.springframework.org/svn/spring-framework/trunk</developerConnection>
+    <url>https://github.com/pdudits/spring-jdbc-bare</url>
+    <connection>scm:git:https://github.com/pdudits/spring-jdbc-bare.git</connection>
+    <developerConnection>scm:git:https://github.com/pdudits/spring-jdbc-bare.git</developerConnection>
   </scm>
   <licenses>
     <license>
@@ -20,6 +20,9 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+  <modules>
+	  <module>org.springframework.jdbc</module>
+  </modules>
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -180,6 +183,9 @@
     </profile>
     <profile>
       <id>legacy-build</id>
+	  <activation>
+		  <activeByDefault>true</activeByDefault>
+	  </activation>
       <repositories>
         <repository>
           <id>java.net</id>
