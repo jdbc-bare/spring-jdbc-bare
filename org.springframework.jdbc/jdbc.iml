@@ -13,10 +13,6 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="module" module-name="aop" />
-    <orderEntry type="module" module-name="beans" />
-    <orderEntry type="module" module-name="context" />
-    <orderEntry type="module" module-name="core" />
     <orderEntry type="library" name="Commons Logging" level="project" />
     <orderEntry type="library" name="EasyMock" level="project" />
     <orderEntry type="library" name="JUnit" level="project" />
