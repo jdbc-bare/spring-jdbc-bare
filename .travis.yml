@@ -3,7 +3,6 @@ script: mvn clean install
 jdk:
   - openjdk6
   - openjdk7
-  - oraclejdk7
 branches:
   only:
     - 3.1.x-bare
