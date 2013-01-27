@@ -5,7 +5,7 @@
   <groupId>com.github.pdudits</groupId>
   <artifactId>spring-jdbc-bare-parent</artifactId>
   <name>Spring JDBC Bare - Parent</name>
-  <version>3.1.4.BUILD-SNAPSHOT</version>
+  <version>3.1.5.BUILD-SNAPSHOT</version>
   <packaging>pom</packaging>
   <description>Spring Framework Parent</description>
   <scm>
@@ -20,6 +20,9 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
+	<properties>
+		<version.spring>3.1.4.RELEASE</version.spring>
+	</properties>
   <modules>
 	  <module>org.springframework.jdbc</module>
   </modules>
