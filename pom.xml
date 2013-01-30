@@ -1,17 +1,23 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.github.pdudits</groupId>
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
+  <groupId>com.github.jdbc-bare</groupId>
   <artifactId>spring-jdbc-bare-parent</artifactId>
   <name>Spring JDBC Bare - Parent</name>
-  <version>3.1.5.BUILD-SNAPSHOT</version>
+  <version>3.1.4.1-SNAPSHOT</version>
   <packaging>pom</packaging>
-  <description>Spring Framework Parent</description>
+  <description>Spring JDBC Bare Parent</description>
+  <url>https://github.com/jdbc-bare/spring-jdbc-bare</url>
   <scm>
-    <url>https://github.com/pdudits/spring-jdbc-bare</url>
-    <connection>scm:git:https://github.com/pdudits/spring-jdbc-bare.git</connection>
-    <developerConnection>scm:git:https://github.com/pdudits/spring-jdbc-bare.git</developerConnection>
+    <url>https://github.com/jdbc-bare/spring-jdbc-bare</url>
+    <connection>scm:git:https://github.com/jdbc-bare/spring-jdbc-bare.git</connection>
+    <developerConnection>scm:git:https://github.com/jdbc-bare/spring-jdbc-bare.git</developerConnection>
   </scm>
   <licenses>
     <license>
@@ -20,11 +26,23 @@
       <distribution>repo</distribution>
     </license>
   </licenses>
-	<properties>
-		<version.spring>3.1.4.RELEASE</version.spring>
-	</properties>
+  <developers>
+	  <developer>
+		  <name>Spring Framework Authors &amp; Contributors</name>
+		  <organization>SpringSource</organization>
+		  <organizationUrl>http://www.springsource.org/</organizationUrl>
+		  <url>https://github.com/SpringSource/spring-framework</url>
+	  </developer>
+	  <developer>
+		  <name>Patrik Duditš</name>
+      <email>jdbcbare@dudits.net</email>
+	  </developer>
+  </developers>
+  <properties>
+    <version.spring>3.1.4.RELEASE</version.spring>
+  </properties>
   <modules>
-	  <module>org.springframework.jdbc</module>
+    <module>org.springframework.jdbc</module>
   </modules>
   <dependencyManagement>
     <dependencies>
@@ -40,10 +58,10 @@
         </exclusions>
       </dependency>
       <dependency>
-    <groupId>javax.inject</groupId>
-    <artifactId>com.springsource.javax.inject</artifactId>
-    <version>1.0.0</version>
-    <scope>provided</scope>
+        <groupId>javax.inject</groupId>
+        <artifactId>com.springsource.javax.inject</artifactId>
+        <version>1.0.0</version>
+        <scope>provided</scope>
       </dependency>
       <dependency>
         <groupId>junit</groupId>
@@ -223,6 +241,27 @@
         </repository>
       </repositories>
     </profile>
+    <profile>
+      <id>release-profile</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-gpg-plugin</artifactId>
+            <version>1.4</version>
+            <executions>
+              <execution>
+                <id>sign-artifacts</id>
+                <phase>verify</phase>
+                <goals>
+                   <goal>sign</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+     </profile>
   </profiles>
   <build>
     <extensions>
@@ -255,16 +294,13 @@
           <argLine>-Xmx512m</argLine>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-release-plugin</artifactId>
+        <version>2.3.2</version>
+        <configuration>
+          <pushChanges>false</pushChanges>
+        </configuration>
+       </plugin>
     </plugins>
   </build>
-  <distributionManagement>
-    <repository>
-      <id>staging</id>
-      <url>file:///${user.dir}/target/staging</url>
-    </repository>
-    <snapshotRepository>
-      <id>staging</id>
-      <url>file:///${user.dir}/target/staging</url>
-    </snapshotRepository>
-  </distributionManagement>
 </project>
