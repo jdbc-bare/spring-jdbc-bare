@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
-    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <modelVersion>4.0.0</modelVersion>
   <artifactId>spring-jdbc-bare</artifactId>
   <packaging>jar</packaging>
@@ -116,26 +116,26 @@
       </testResource>
     </testResources>
 
-	 <plugins>
-		 <plugin>
-			 <groupId>org.codehaus.mojo</groupId>
-			 <artifactId>build-helper-maven-plugin</artifactId>
-			 <version>1.7</version>
-			 <executions>
-				 <execution>
-					 <id>add-removed-for-test</id>
-					 <phase>generate-test-sources</phase>
-					 <goals>
-						 <goal>add-test-source</goal>
-					 </goals>
-					 <configuration>
-						 <sources>
-							 <source>src/removed/java</source>
-						 </sources>
-					 </configuration>
-				 </execution>
-			 </executions>
-		 </plugin>
-	 </plugins>
+	  <plugins>
+	    <plugin>
+	      <groupId>org.codehaus.mojo</groupId>
+          <artifactId>build-helper-maven-plugin</artifactId>
+          <version>1.7</version>
+          <executions>
+            <execution>
+              <id>add-removed-for-test</id>
+              <phase>generate-test-sources</phase>
+              <goals>
+                <goal>add-test-source</goal>
+              </goals>
+              <configuration>
+                <sources>
+                  <source>src/removed/java</source>
+                </sources>
+              </configuration>
+           </execution>
+        </executions>
+      </plugin>
+	  </plugins>
   </build>
 </project>
