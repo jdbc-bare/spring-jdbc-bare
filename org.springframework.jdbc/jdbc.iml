@@ -84,9 +84,8 @@
     </orderEntry>
     <orderEntry type="library" name="Maven: c3p0:c3p0:0.9.1.2" level="project" />
     <orderEntry type="library" scope="PROVIDED" name="Maven: org.apache.geronimo.specs:geronimo-jta_1.1_spec:1.1" level="project" />
-    <orderEntry type="library" scope="PROVIDED" name="Maven: com.ibm.websphere:com.springsource.com.ibm.websphere.uow:6.0.2.17" level="project" />
-    <orderEntry type="library" name="Maven: javax.ejb:com.springsource.javax.ejb:3.0.0" level="project" />
-    <orderEntry type="library" name="Maven: javax.resource:com.springsource.javax.resource:1.5.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.ejb:ejb-api:3.0" level="project" />
+    <orderEntry type="library" name="Maven: javax.resource:connector-api:1.5" level="project" />
     <orderEntry type="library" name="Maven: commons-logging:commons-logging:1.1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-beans:3.1.4.RELEASE" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-core:3.1.4.RELEASE" level="project" />
@@ -98,8 +97,8 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.springframework:spring-tx:3.1.4.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: hsqldb:hsqldb:1.8.0.7" level="project" />
     <orderEntry type="library" name="Maven: com.h2database:h2:1.0.71" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.derby:com.springsource.org.apache.derby:10.5.1000001.764942" level="project" />
-    <orderEntry type="library" name="Maven: org.apache.derby:com.springsource.org.apache.derby.client:10.5.1000001.764942" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.derby:derby:10.5.3.0_1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.derby:derbyclient:10.5.3.0_1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.9" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:1.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.easymock:easymock:2.5.1" level="project" />

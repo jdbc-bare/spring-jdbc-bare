@@ -204,9 +204,6 @@
     </profile>
     <profile>
       <id>legacy-build</id>
-	  <activation>
-		  <activeByDefault>true</activeByDefault>
-	  </activation>
       <repositories>
         <!-- for use with jexcelapi 2.6.8, portlet 2.0, javax.el/el-api 2.1 -->
         <repository>
