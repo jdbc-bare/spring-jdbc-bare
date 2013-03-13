@@ -21,7 +21,6 @@ import java.sql.Driver;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.util.Assert;
 
 /**
@@ -108,8 +107,14 @@ public class SimpleDriverDataSource extends AbstractDriverBasedDataSource {
 	 * @see #setDriver
 	 */
 	public void setDriverClass(Class<? extends Driver> driverClass) {
-		this.driver = BeanUtils.instantiateClass(driverClass);
-	}
+        try {
+            this.driver = driverClass.newInstance();
+        } catch (InstantiationException e) {
+            throw new IllegalArgumentException("Cannot instantiate driver", e);
+        } catch (IllegalAccessException e) {
+            throw new IllegalArgumentException("Cannot instantiate driver", e);
+        }
+    }
 
 	/**
 	 * Specify the JDBC Driver instance to use.
