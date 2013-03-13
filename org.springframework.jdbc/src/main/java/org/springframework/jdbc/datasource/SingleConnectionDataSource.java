@@ -23,7 +23,6 @@ import java.lang.reflect.Proxy;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-import org.springframework.beans.factory.DisposableBean;
 import org.springframework.util.Assert;
 import org.springframework.util.ObjectUtils;
 
@@ -56,7 +55,7 @@ import org.springframework.util.ObjectUtils;
  * @see org.springframework.jdbc.support.nativejdbc.NativeJdbcExtractor
  */
 public class SingleConnectionDataSource extends DriverManagerDataSource
-		implements SmartDataSource, DisposableBean {
+		implements SmartDataSource {
 
 	/** Create a close-suppressing proxy? */
 	private boolean suppressClose;
@@ -222,8 +221,6 @@ public class SingleConnectionDataSource extends DriverManagerDataSource
 	/**
 	 * Close the underlying Connection.
 	 * The provider of this DataSource needs to care for proper shutdown.
-	 * <p>As this bean implements DisposableBean, a bean factory will
-	 * automatically invoke this on destruction of its cached singletons.
 	 */
 	public void destroy() {
 		synchronized (this.connectionMonitor) {
