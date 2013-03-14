@@ -8,7 +8,7 @@
   <groupId>com.github.jdbc-bare</groupId>
   <artifactId>spring-jdbc-bare-parent</artifactId>
   <name>Spring JDBC Bare - Parent</name>
-  <version>3.1.4.1</version>
+  <version>3.1.4.2-SNAPSHOT</version>
   <packaging>pom</packaging>
   <description>Spring JDBC Bare Parent</description>
   <url>https://github.com/jdbc-bare/spring-jdbc-bare</url>
@@ -16,7 +16,7 @@
     <url>https://github.com/jdbc-bare/spring-jdbc-bare</url>
     <connection>scm:git:https://github.com/jdbc-bare/spring-jdbc-bare.git</connection>
     <developerConnection>scm:git:https://github.com/jdbc-bare/spring-jdbc-bare.git</developerConnection>
-    <tag>spring-jdbc-bare-3.1.4.1</tag>
+    <tag>HEAD</tag>
   </scm>
   <licenses>
     <license>
