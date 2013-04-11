@@ -13,9 +13,9 @@ Framework, with some base classes moved into the module, and some of the feature
 
 * No Resource transaction support. Users are expected to use container-managed datasource and transactions.
 * No BeanPropertyRowMapper, BeanPropertySqlParameterSource or any other classes that were too dependant on
-  other modules. See [this folder]([removed](https://github.com/jdbc-bare/spring-jdbc-bare/tree/master/org.springframework.jdbc/src/removed/java/org/springframework/jdbc).
-* SQL Custom Exception Mapping support is quite basic, as project uses very simple JAXB based implementation of
-  XML bean definition.
+  other modules.
+* SQL Custom Exception Mapping support is quite basic. Instead of full bean container there is simple implementation
+  based on reflection and JAXB.
 
 ## Maven coordinates
 
