@@ -155,11 +155,7 @@
                 com.mchange.v2.c3p0;version="[0.9.1, 2.0.0)";resolution:="optional",
                 com.sun.rowset;version="[1.0.1, 2.0.0)";resolution:="optional",
                 javax.naming;version="0";resolution:="optional",
-                javax.sql;version="0",
-                javax.sql.rowset;version="0",
                 javax.transaction;version="[1.0.1, 2.0.0)";resolution:="optional",
-                javax.xml.transform;version="0";resolution:="optional",
-                javax.xml.transform.dom;version="0";resolution:="optional",
                 oracle.jdbc;version="0";resolution:="optional",
                 oracle.sql;version="0";resolution:="optional",
                 org.apache.commons.logging;version="[1.1.1, 2.0.0)",
@@ -168,8 +164,8 @@
                 org.h2;version="[1.0.0, 2.0.0)";resolution:="optional",
                 org.hsqldb;version="[1.8.0, 2.0.0)";resolution:="optional",
                 org.jboss.resource.adapter.jdbc;version="0";resolution:="optional",
-                org.w3c.dom;version="0";resolution:="optional",
-                weblogic.jdbc.extensions;version="0";resolution:="optional"
+		weblogic.jdbc.extensions;version="0";resolution:="optional",
+		*
               </Import-Package>
               <Export-Package>
                 org.springframework.jdbc.*,
